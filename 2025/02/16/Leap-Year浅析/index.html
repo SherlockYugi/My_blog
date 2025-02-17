@@ -127,6 +127,68 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -149,7 +211,19 @@
         </header>
 
         <div class="post-content">
-            
+            <h1>Leap Year（闰跃之年）玩法及关卡浅析</h1>
+<p>Leap Year（闰跃之年）是Daniel Linssen制作，袜子社（Sokpop Collective）发行的平台跳跃游戏。Leap Year，正如其名，在2024这个闰年的所推出的游戏，围绕这2月这个特殊的月份和Leap一词来设计的游戏机制，并加上“知识锁”的玩法，使其虽然作为通关时长大概只有3小时的游戏，足以和星际拓荒、Tunic等游戏一起作为知识锁类型游戏的代表。笔者在农历2024年的最后一天购买并体验的这款游戏，22元的售价和3.1小时全成就时长让我的2024多了一份深刻记忆。</p>
+<p><strong>剧透警告</strong></p>
+<hr>
+<h2 id="比杰洛特还脆弱的膝盖——跳跃玩法">比杰洛特还脆弱的膝盖——跳跃玩法</h2>
+<p><img src="https://github.com/SherlockYugi/myBlogImg/blob/main/20250217215914.png?raw=true" alt="一进游戏时的场景"></p>
+<p>在游戏的一开始就给出了游戏仅需的三个键，是的，只需要左右移动加上一个跳跃键即可通关这个游戏。头顶的可收集物时时刻刻在诱导着你按下跳跃键，而当你跳起后落地时就会发现，死了~</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250217221056048.png" alt="死了~"></p>
+<p>不仅如此，还会解锁一个Steam成就的描述是“?”，很符合这一刻的心情（</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250217222508498.png" alt="成就"></p>
+<p>在后面的流程中，人物还会变成各种颜色，而通过跳跃这一最屡见不鲜的玩法，人物可以做到从高处落下时能弹跳3格来到达之前无法跳跃到的地方，能穿过墙壁，甚至倒转重力，这一切的机制都蕴含在Leap这一动作里。</p>
+<p>作者把跳跃分解的很彻底，落下的距离成了游戏的关键。跳跃作为游戏一开始就有的操作玩法，而一切相关的机制都需要在作者精心搭建的关卡里逐步发现。</p>
+
         </div>
 
         
