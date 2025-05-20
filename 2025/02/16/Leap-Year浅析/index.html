@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Sherlockyugi">
+
+
+
+
+
+<title>Leap Year浅析 | 时空悦耳的Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+<style>
+    body.dark-theme figure.highlight,
+    body.dark-theme figure.highlight pre,
+    body.dark-theme figure.highlight code {
+        background-color: #2d2d2d !important;
+        color: #f8f8f2 !important;
+        border-radius: 8px;
+        /* 可选，加圆角 */
+        padding: 1em;
+        /* 可选，加内边距 */
+    }
+</style>
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Sherlockyugi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Sherlockyugi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Leap Year浅析</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Sherlockyugi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">二月 16, 2025&nbsp;&nbsp;18:45:18</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>Leap Year（闰跃之年）玩法及关卡浅析</h1>
+<p>Leap Year（闰跃之年）是Daniel Linssen制作，袜子社（Sokpop Collective）发行的平台跳跃游戏。Leap Year，正如其名，在2024这个闰年的所推出的游戏，围绕这2月这个特殊的月份和Leap一词来设计的游戏机制，并加上“知识锁”的玩法，使其虽然作为通关时长大概只有3小时的游戏，足以和星际拓荒、Tunic等游戏一起作为知识锁类型游戏的代表。笔者在农历2024年的最后一天购买并体验的这款游戏，22元的售价和3.1小时全成就时长让我的2024多了一份深刻记忆。</p>
+<p><strong>剧透警告</strong></p>
+<hr>
+<h2 id="比杰洛特还脆弱的膝盖-——-跳跃玩法">比杰洛特还脆弱的膝盖  ——  跳跃玩法</h2>
+<p><img src="https://github.com/SherlockYugi/myBlogImg/blob/main/20250217215914.png?raw=true" alt="一进游戏时的场景"></p>
+<p>在游戏的一开始就给出了游戏仅需的三个键，是的，只需要左右移动加上一个跳跃键即可通关这个游戏。如此普遍的操作许多玩家初见都会觉得毫无新意，同时头顶的可收集物时时刻刻在诱导着你按下跳跃键，而当你跳起后落地时就会发现，死了~</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250217221056048.png" alt="死了~"></p>
+<p>不仅如此，还会解锁一个Steam成就的描述是“?”，很符合这一刻的心情（</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250217222508498.png" alt="成就"></p>
+<p>在后面的流程中，人物还会变成各种颜色，而通过跳跃这一最屡见不鲜的玩法，人物可以做到从高处落下时能弹跳3格来到达之前无法跳跃到的地方，能穿过墙壁，甚至倒转重力，这一切的机制都蕴含在Leap这一动作里。</p>
+<p>作者把跳跃分解的很彻底，跳跃作为一个会有纵轴上移动一定距离的动作，落下的距离成了这个游戏的关键。跳跃作为游戏一开始就有的操作玩法，而一切相关的机制都需要在作者精心搭建的关卡里逐步发现。</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218155701629.png" alt="作者在地图内的提示"></p>
+<h2 id="摔不死你的，会让你再摔一次-——-关卡设计">摔不死你的，会让你再摔一次  ——  关卡设计</h2>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218160542935.png" alt="开始界面"></p>
+<p>开始界面就揭示了这个游戏和2024年的2月密不可分，而你点击新游戏后，29个日期会散落下去暗示着这是你所需要收集的物品。尝试收集头顶的“29”摔死若干次后，玩家会遵从游戏的指引开始收集“1“，同时也留下了最终会回来收集“29”的伏笔。此时前方的警告牌也给与玩家一种心理暗示，不会在前期轻易地尝试穿越地刺来做到超出设计的流程。<img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218161446928.png" alt="小心地刺！">而玩家跳跃过地刺后发现自己没摔死，就会了解顶头跳并不会摔死，而后面的平台也揭示了跳上高一级的台阶也不会导致死亡。<img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218161934967.png" alt="第二个房间">而在之后的第二个房间内，作者又通过收集“2”来检验玩家是否完全领悟如何进行跳跃来存活。在这个房间向右是收集“16”的房间，序号的跳跃也暗示着不是现在能到达的地方，尝试跳跃无果后玩家就会走向上方的房间。<img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218170020974.png" alt="image-20250218170020974">在收集过“4”后玩家会发现一个灰色小人，而小人的位置也摆放在最容易落地的地方，来揭示灰色小人的作用。而后面收集“6”的地方需要确保玩家了解小人作用之后才能通过。而后面收集“12”的地方更是要求玩家对灰色小人的利用理解更上一层楼。<img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218164301700.png" alt="image-20250218164301700"></p>
+<p>而“14”的场景作者在玩梗的同时，可以注意到有个单独的小人不在平台上，实际上这也是之后收集“21”的一处提示。继续向左走后玩家可以在场景右下角发现shift键的提示，按下后场景会加上网格，预示着接下来会需要了解跳跃的高度。若玩家往下走，就会回到之前经过的地方，没有其他可以收集的物品了。而向左走就会发现新的知识——当玩家从四格以上的距离落下时会变成紫色，并在碰到地面时反弹三格。而有了这个知识后玩家向下走才会理解场景中的提示，玩家需要往回走并运用刚学到的知识才能进入下个场景。<img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218165339869.png" alt="image-20250218165339869">在经过一个场景的考验后，作者又揭示了小人穿墙的能力，并暗示玩家需要在穿墙的过程中注意方向才能最终到达理想的着陆点。</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250218180100333.png" alt="image-20250218180100333">之后的这个场景不仅让玩家知道了地刺是可以横穿的，更是告诉了玩家一个很重要的操作就是跨屏跳。</p>
+<p>相比之前的丝滑引导，之后的收集难度明显上了个阶梯。尤其是“23”，需要先将一处的灰色小人踩下，之后跨越一整个房间，再回到上方跳下穿墙才能到达处于另一个房间的“23”。</p>
+<p><img src="https://raw.githubusercontent.com/SherlockYugi/myBlogImg/main/image-20250220203132977.png" alt="image-20250220203132977">前文的关卡解析只能显示作者的引导设计能力，而真正体现作者强大的关卡设计能力就要等到取得了28个日期后才揭示的重力倒转能力，而此时玩家需要在陌生的操作模式下走过之前熟悉或不熟悉的路线。由于这款游戏的特殊机制，玩家的每次跳跃精确到每个格子，因此地图的设计需要十分准确。</p>
+<p>再多的解析也无法表现设计的精巧，只有亲手体验才能触及作者的心血。听闻不久后将推出MarchDLC，甚至拥有比本体还大的体量（ 。相信到时又能饱尝一顿设计的大餐。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Sherlockyugi</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://sherlockyugi.github.io.git/2025/02/16/Leap-Year%E6%B5%85%E6%9E%90/">https://sherlockyugi.github.io.git/2025/02/16/Leap-Year%E6%B5%85%E6%9E%90/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%B8%B8%E6%88%8F%E9%89%B4%E8%B5%8F/"># 游戏鉴赏</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/04/23/test/">时隔近两个月的更新（</a>
+            
+            
+            <a class="next" rel="next" href="/2025/02/02/FebToDo/">FebToDo</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Sherlockyugi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
