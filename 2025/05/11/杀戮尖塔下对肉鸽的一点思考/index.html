@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Sherlockyugi">
+
+
+
+
+
+<title>杀戮尖塔下对肉鸽的一点思考 | 时空悦耳的Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+<style>
+    body.dark-theme figure.highlight,
+    body.dark-theme figure.highlight pre,
+    body.dark-theme figure.highlight code {
+        background-color: #2d2d2d !important;
+        color: #f8f8f2 !important;
+        border-radius: 8px;
+        /* 可选，加圆角 */
+        padding: 1em;
+        /* 可选，加内边距 */
+    }
+</style>
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Sherlockyugi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Sherlockyugi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">杀戮尖塔下对肉鸽的一点思考</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Sherlockyugi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">五月 11, 2025&nbsp;&nbsp;22:57:51</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>对Rouge玩法的个人随想——基于杀戮尖塔</h1>
+<p>笔者最近与他人一起协作一个肉鸽玩法的游戏，免不了与同伴相讨论在我们的游戏里肉鸽的表现，而在讨论中有了诸多想法，便记录下来。而笔者最熟悉的肉鸽游戏是杀戮尖塔，作为顶尖的肉鸽卡牌，便是最好的分析对象。</p>
+<p><strong>以下均为个人见解</strong></p>
+<h2 id="肉鸽的本质">肉鸽的本质</h2>
+<p>笔者没玩过肉鸽老祖Rouge，只好就现在主流的认识做个自我的总结。肉鸽玩法一句话来说就是让玩家在重复的基本玩法下有不同体验。所以重点在与好玩的基本玩法和足量的不同体验，毕竟再好玩的玩法在同一体验下也会厌烦，游戏的本质就是带给玩家丰富的情感体验。而杀戮尖塔的玩法就是把使用随机收集到的卡牌打随机的怪物，基本玩法用卡牌爬塔是不会变的，而各种影响到这个玩法的元素如卡牌种类、怪物种类、遗物、药水等，都是随机的，由此来保证每一局游戏都是不同的，从而带给玩家不同的体验。</p>
+<h2 id="肉鸽主要改进点">肉鸽主要改进点</h2>
+<p>此处主要谈论肉鸽玩法的改进点，对于基本玩法不在讨论范围内。要做一个好的肉鸽必定是每一次玩法循环是能带给玩家新鲜感，随机便成了最广泛的使用方法，因为通过大量的随机元素搭配就可构成在固定的玩法框架下让玩家玩到不同的体验。但如何随机和随机的量就成了每个肉鸽游戏大做文章的地方了。</p>
+<p>首先绝大多数肉鸽都是采用随机的种子生成固定的其他元素，这种方法不仅做到了让每轮游戏做到不同，也使每轮游戏能做到复盘，无论是自己用来提升抑或分享给他人，都是很好的对游戏的拓展。基于种子的随机在笔者看来是肉鸽不可或缺的一部分，不依靠种子的随机肉鸽只会让玩家迷失在对爽感的渴求里，而无法做到持之以恒的对高难度的挑战，这是对肉鸽玩法中挑战自我部分的不合理舍弃。</p>
+<p>在肉鸽游戏中，轻度或中度玩家最有爽感之一的场景就是在自己发现一个Build的时候能在接下来使用，而过多明显的Build套路便不由得会让玩家觉得这是设计师在教玩家打游戏，许多肉鸽重度玩家都讨厌这种流派化，这会使游戏在固定的套路下才更容易通关，肉鸽的随机性不仅没有给玩家带来不一样的体验，反而让玩家不能有能通关的流派而失去乐趣。杀戮尖塔作为去流派化的优秀案例之一，游戏中有让轻度玩家一眼看出来的流派，但更多的是重度玩家才能发现的数值上强大的卡，更多的依靠这些数值卡才能更简单的通关，而因此无法成为杀戮尖塔高手很多人就卡在无法分辨对获胜有巨大帮助的卡和只是某个流派的必需卡（比如很多人认为没有壁垒就玩不了防战）。在流派化方面的改进点，笔者认为在低难度的对局中可以试着更多刷新流派化的资源，可以优化轻度玩家的体验；而游戏中也不能出现过多的流派特化资源，这会形成游戏在高难度下对强度流派的依赖。</p>
+<p>暂且就想到这些，日后若有更深的理解再会补充。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Sherlockyugi</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://sherlockyugi.github.io.git/2025/05/11/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E4%B8%8B%E5%AF%B9%E8%82%89%E9%B8%BD%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/">https://sherlockyugi.github.io.git/2025/05/11/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E4%B8%8B%E5%AF%B9%E8%82%89%E9%B8%BD%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9A%8F%E6%83%B3/"># 随想</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/06/03/unity%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/">unity小知识笔记</a>
+            
+            
+            <a class="next" rel="next" href="/2025/04/27/5%E6%9C%88%E4%B9%A6%E5%8D%95/">5月书单</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Sherlockyugi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
